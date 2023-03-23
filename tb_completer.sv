@@ -1,8 +1,8 @@
 // include all the design files
-`include "flex_counter.sv"
+`include "apb_completer.sv"
 
 // include all the interface files
-`include "counter_if.svh"
+`include "apb_if.sv"
 
 // include UVM test file
 `include "test.svh"
