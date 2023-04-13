@@ -1,8 +1,8 @@
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-`include "sequence.svh"
-`include "driver.svh"
-`include "monitor.svh"
+`include "apb_sequence.svh"
+`include "apb_driver.svh"
+`include "apb_monitor.svh"
 
 class agent extends uvm_agent;
   `uvm_component_utils(agent)

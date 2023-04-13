@@ -1,21 +1,26 @@
+// 1. Import and include all the necessary files
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-`include "counter_if.svh"
+`include "apb_if.svh"
+// 2. Define the class and register it with the factory
 class monitor extends uvm_monitor;
   `uvm_component_utils(monitor)
 
+  // 3. Declare all the fields
   virtual counter_if vif;
 
   uvm_analysis_port #(transaction) counter_ap;
   uvm_analysis_port #(transaction) result_ap;
   transaction prev_tx; // to see if a new transaction has been sent
   
+  // 4. Define constructor
   function new(string name, uvm_component parent = null);
     super.new(name, parent);
     counter_ap = new("counter_ap", this);
     result_ap = new("result_ap", this);
   endfunction: new
 
+  // 5. Get virtual interface in build_phase
   // Build Phase - Get handle to virtual if from config_db
   virtual function void build_phase(uvm_phase phase);
     if (!uvm_config_db#(virtual counter_if)::get(this, "", "counter_vif", vif)) begin
@@ -23,6 +28,7 @@ class monitor extends uvm_monitor;
     end
   endfunction
 
+  // 6. Design the run_phase
   virtual task run_phase(uvm_phase phase);
     super.run_phase(phase);
     prev_tx = transaction#(4)::type_id::create("prev_tx");

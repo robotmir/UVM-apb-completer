@@ -1,17 +1,22 @@
+// 1. Import and include all the necessary files
 import uvm_pkg::*;
 `include "uvm_macros.svh"
 
-`include "counter_if.svh"
+`include "apb_if.svh"
 
+// 2. Define the class and register it with the factory
 class driver extends uvm_driver#(transaction);
   `uvm_component_utils(driver)
 
+  // 3. Declare all the fields
   virtual counter_if vif;
 
+  // 4. Define constructor
   function new(string name, uvm_component parent);
 		super.new(name, parent);
 	endfunction: new
 
+  // 5. Get virtual interface in build_phase
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     // get interface from database
@@ -21,6 +26,7 @@ class driver extends uvm_driver#(transaction);
 		end
   endfunction: build_phase
 
+  // 6. Design the run_phase
   task run_phase(uvm_phase phase);
     transaction req_item;
     vif.check = 0;

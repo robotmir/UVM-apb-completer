@@ -1,13 +1,14 @@
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-`include "environment.svh"
+`include "apb_environment.svh"
 
+////////////////////////////////// uvm_test
 class test extends uvm_test;
   `uvm_component_utils(test)
 
   environment env;
-  virtual counter_if vif;
-  counter_sequence seq;
+  virtual apb_if vif;
+  apb_sequence seq;
 
   function new(string name = "test", uvm_component parent);
 		super.new(name, parent);
@@ -16,15 +17,15 @@ class test extends uvm_test;
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
 		env = environment::type_id::create("env",this);
-    seq = counter_sequence::type_id::create("seq");
+    seq = apb_sequence::type_id::create("seq");
 
     // send the interface down
-    if (!uvm_config_db#(virtual counter_if)::get(this, "", "counter_vif", vif)) begin 
+    if (!uvm_config_db#(virtual apb_if)::get(this, "", "apb_vif", vif)) begin 
       // check if interface is correctly set in testbench top level
 		   `uvm_fatal("TEST", "No virtual interface specified for this test instance")
 		end 
 
-		uvm_config_db#(virtual counter_if)::set(this, "env.agt*", "counter_vif", vif);
+		uvm_config_db#(virtual apb_if)::set(this, "env.agt*", "apb_vif", vif);
 
   endfunction: build_phase
 

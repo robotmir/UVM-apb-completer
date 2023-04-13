@@ -1,13 +1,13 @@
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-`include "environment.svh"
+`include "apb_environment.svh"
 
 class test extends uvm_test;
   `uvm_component_utils(test)
 
-  environment env;
-  virtual counter_if vif;
-  counter_sequence seq;
+  environment env; // top level environment
+  virtual counter_if vif; // virtual interface
+  counter_sequence seq; // top level sequence
 
   function new(string name = "test", uvm_component parent);
 		super.new(name, parent);
