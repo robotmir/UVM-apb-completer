@@ -26,7 +26,7 @@ module tb_completer ();
 
 
   // instantiate the interface
-    ////////////////////////////////////////////////////// edit
+    ///////////////////////////////////////////////////// edit
   apb_if apb_dut_if(PCLK, PRESETn);
   bus_protocol_if bus_dut_if();
   
