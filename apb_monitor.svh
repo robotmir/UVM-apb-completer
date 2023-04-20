@@ -1,7 +1,7 @@
 // 1. Import and include all the necessary files
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-`include "apb_if.svh"
+// `include "apb_if.sv"
 // 2. Define the class and register it with the factory
 class monitor extends uvm_monitor;
   `uvm_component_utils(monitor)
@@ -29,32 +29,32 @@ class monitor extends uvm_monitor;
   endfunction
 
   // 6. Design the run_phase
-  virtual task run_phase(uvm_phase phase);
-    super.run_phase(phase);
-    prev_tx = transaction#(4)::type_id::create("prev_tx");
-    forever begin
-      transaction tx;
-      @(posedge vif.clk);
-      // captures activity between the driver and DUT
-      tx = transaction#(4)::type_id::create("tx");
-      tx.rollover_value = vif.rollover_val;
-      tx.num_clk = vif.enable_time;
+  // virtual task run_phase(uvm_phase phase);
+  //   super.run_phase(phase);
+  //   prev_tx = transaction#(4)::type_id::create("prev_tx");
+  //   forever begin
+  //     transaction tx;
+  //     @(posedge vif.clk);
+  //     // captures activity between the driver and DUT
+  //     tx = transaction#(4)::type_id::create("tx");
+  //     tx.rollover_value = vif.rollover_val;
+  //     tx.num_clk = vif.enable_time;
 
-      // check if there is a new transaction
-      if (!tx.input_equal(prev_tx) && tx.rollover_value !== 'z) begin
-        // send the new transaction to predictor though counter_ap
-        counter_ap.write(tx);
-        // wait until check is asserted
-        while(!vif.check) begin
-          @(posedge vif.clk);
-        end
-        // capture the responses from DUT and send it to scoreboard through result_ap
-        tx.result_count_out = vif.count_out;
-        tx.result_flag = vif.rollover_flag;
-        result_ap.write(tx);
-        prev_tx.copy(tx);
-      end
-    end
-  endtask: run_phase
+  //     // check if there is a new transaction
+  //     if (!tx.input_equal(prev_tx) && tx.rollover_value !== 'z) begin
+  //       // send the new transaction to predictor though counter_ap
+  //       counter_ap.write(tx);
+  //       // wait until check is asserted
+  //       while(!vif.check) begin
+  //         @(posedge vif.clk);
+  //       end
+  //       // capture the responses from DUT and send it to scoreboard through result_ap
+  //       tx.result_count_out = vif.count_out;
+  //       tx.result_flag = vif.rollover_flag;
+  //       result_ap.write(tx);
+  //       prev_tx.copy(tx);
+  //     end
+  //   end
+  // endtask: run_phase
 
 endclass: monitor

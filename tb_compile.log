@@ -1,0 +1,15 @@
+QuestaSim-64 vlog 10.6b Compiler 2017.05 May 25 2017
+Start time: 00:34:02 on Apr 20,2023
+vlog "+incdir+src+src/master+src/register+src/slave" "+acc" "+cover" -L /package/eda/mg/questa10.6b/questasim/uvm-1.2 tb_completer.sv -logfile tb_compile.log -printinfilenames=file_search.log 
+-- Compiling module apb_completer
+-- Compiling interface apb_if
+-- Compiling interface bus_protocol_if
+** Note: (vlog-2286) apb_test.svh(2): Using implicit +incdir+/package/eda/mg/questa10.6b/questasim/uvm-1.2/../verilog_src/uvm-1.2/src from import uvm_pkg
+-- Compiling package tb_completer_sv_unit
+-- Importing package /package/eda/mg/questa10.6b/questasim/uvm-1.2.uvm_pkg (uvm-1.2 Built-in)
+-- Compiling module tb_completer
+
+Top level modules:
+	tb_completer
+End time: 00:34:02 on Apr 20,2023, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

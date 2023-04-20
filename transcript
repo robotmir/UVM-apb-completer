@@ -13,9 +13,18 @@
 # //  18 U.S.C. Section 1905.
 # //
 # vsim -i tb_completer -L /package/eda/mg/questa10.6b/questasim/uvm-1.2 -voptargs="+acc" -coverage 
-# Start time: 14:20:05 on Apr 13,2023
-# ** Error (suppressible): (vsim-19) Failed to access library 'work' at "work".
-# No such file or directory. (errno = ENOENT)
-# Error loading design
-# End time: 14:20:05 on Apr 13,2023, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 0
+# Start time: 00:34:09 on Apr 20,2023
+# Loading /tmp/socet76@asicfab.ecn.purdue.edu_dpi_8535/linux_x86_64_gcc-5.3.0/export_tramp.so
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading sv_std.std
+# Loading /package/eda/mg/questa10.6b/questasim/uvm-1.2.uvm_pkg
+# Loading work.tb_completer_sv_unit(fast)
+# Loading work.tb_completer(fast)
+# Loading work.apb_if(fast)
+# Loading work.bus_protocol_if(fast)
+# Loading work.apb_completer(fast)
+# Loading /package/eda/mg/questa10.6b/questasim/uvm-1.2.questa_uvm_pkg(fast)
+# Compiling /tmp/socet76@asicfab.ecn.purdue.edu_dpi_8535/linux_x86_64_gcc-5.3.0/exportwrapper.c
+# Loading /tmp/socet76@asicfab.ecn.purdue.edu_dpi_8535/linux_x86_64_gcc-5.3.0/vsim_auto_compile.so
+# Loading /package/eda/mg/questa10.6b/questasim/uvm-1.2/linux_x86_64/uvm_dpi.so
+add wave -position insertpoint sim:/tb_completer/*

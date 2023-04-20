@@ -154,4 +154,3 @@ module apb_completer #(
     assign protif.wdata = apbif.PWDATA;
 
 endmodule
-Footer
