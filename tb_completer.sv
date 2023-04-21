@@ -21,11 +21,8 @@ module tb_completer ();
   // generate clock
   initial begin
     PCLK = 0;
-    forever #10 PCLK = !PCLK;
-  end
-
-  initial begin
     PRESETn = 1'b0;
+    forever #10 PCLK = !PCLK;
   end
 
   // instantiate the interface
@@ -39,9 +36,13 @@ module tb_completer ();
 
   // start the test
   // initial begin
-  //   uvm_config_db#(virtual counter_if)::set( null, "", "vif", apb_slave_if); // configure the interface into the database, so that it can be accessed throughout the hierachy
-  //   // uvm_config_db#(virtual apb_if)::set( null, "", "vif", apb_slave_if); // configure the interface into the database, so that it can be accessed throughout the hierachy
+  //   uvm_config_db#(virtual apb_completer)::set(null, "", "vif", apb_slave_if); // configure the interface into the database, so that it can be accessed throughout the hierachy
+  //   // uvm_config_db#(virtual bus_protocol_if)::set(null, "", "vif", bus_slave_if); // configure the interface into the database, so that it can be accessed throughout the hierachy
   //   run_test("test"); // initiate test component
   //   // you can also call run_test() without argument and specify the test name by using command line option +UVM_TESTNAME="test"
   // end
+
+  initial begin
+    $stop;
+  end
 endmodule

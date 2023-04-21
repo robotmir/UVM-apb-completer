@@ -7,7 +7,7 @@ class monitor extends uvm_monitor;
   `uvm_component_utils(monitor)
 
   // 3. Declare all the fields
-  virtual counter_if vif;
+  virtual apb_if vif;
 
   uvm_analysis_port #(transaction) counter_ap;
   uvm_analysis_port #(transaction) result_ap;
@@ -23,12 +23,12 @@ class monitor extends uvm_monitor;
   // 5. Get virtual interface in build_phase
   // Build Phase - Get handle to virtual if from config_db
   virtual function void build_phase(uvm_phase phase);
-    if (!uvm_config_db#(virtual counter_if)::get(this, "", "counter_vif", vif)) begin
+    if (!uvm_config_db#(virtual apb_if)::get(this, "", "apb_vif", vif)) begin
       `uvm_fatal("monitor", "No virtual interface specified for this monitor instance")
     end
   endfunction
 
-  // 6. Design the run_phase
+  // // 6. Design the run_phase
   // virtual task run_phase(uvm_phase phase);
   //   super.run_phase(phase);
   //   prev_tx = transaction#(4)::type_id::create("prev_tx");

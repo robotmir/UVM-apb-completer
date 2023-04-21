@@ -2,8 +2,6 @@
 import uvm_pkg::*;
 `include "uvm_macros.svh" // UVM library
 `include "apb_agent.svh"
-// `include "apb_if.sv"
-// `include "bus_protocol_if.sv" // imported bus if
 `include "apb_comparator.svh" // uvm_scoreboard
 `include "apb_predictor.svh" // uvm_subscriber
 `include "apb_transaction.svh" // uvm_sequence_item
@@ -24,13 +22,13 @@ class environment extends uvm_env;
 	endfunction
 
   // 5. Build all the components in build_phase function
-  // function void build_phase(uvm_phase phase);
-  //   // instantiate all the components through factory method
-  //   agt_apb = apb_agent::type_id::create("agt_apb", this);
-  //   agt_bus = apb_bus_agent::type_id::create("agt_bus", this);
-  //   pred = apb_predictor::type_id::create("pred", this);
-  //   comp = apb_comparator::type_id::create("comp", this);
-  // endfunction
+  function void build_phase(uvm_phase phase);
+    // instantiate all the components through factory method
+    agt_apb = agent::type_id::create("agt_apb", this);
+    agt_bus = agent::type_id::create("agt_bus", this);
+    pred = predictor::type_id::create("pred", this);
+    comp = comparator::type_id::create("comp", this);
+  endfunction
 
   // 6. Connect all the components
   function void connect_phase(uvm_phase phase);

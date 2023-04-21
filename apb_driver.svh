@@ -2,14 +2,12 @@
 import uvm_pkg::*;
 `include "uvm_macros.svh"
 
-// `include "apb_if.sv"
-
 // 2. Define the class and register it with the factory
 class driver extends uvm_driver#(transaction);
   `uvm_component_utils(driver)
 
   // 3. Declare all the fields
-  virtual counter_if vif;
+  virtual apb_if vif;
 
   // 4. Define constructor
   function new(string name, uvm_component parent);
@@ -20,13 +18,14 @@ class driver extends uvm_driver#(transaction);
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     // get interface from database
-    if( !uvm_config_db#(virtual counter_if)::get(this, "", "counter_vif", vif) ) begin
+    if( !uvm_config_db#(virtual apb_if)::get(this, "", "apb_vif", vif) ) begin
       // if the interface was not correctly set, raise a fatal message
       `uvm_fatal("Driver", "No virtual interface specified for this test instance");
 		end
   endfunction: build_phase
 
-  // 6. Design the run_phase
+  // change it so it verifies apb_completer
+  // // 6. Design the run_phase
   // task run_phase(uvm_phase phase);
   //   transaction req_item;
   //   vif.check = 0;
